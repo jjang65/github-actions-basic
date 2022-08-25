@@ -1,0 +1,18 @@
+name: Actions Workflow
+
+on: [push]
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action  # Refer: https://github.com/actions/hello-world-javascript-action
+        id: greet
+        uses: actions/hello-world-javascript-action@v1.1  # Choose action with specific version
+        # uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b  # Choose action with specific commit
+        # uses: actions/hello-world-javascript-action@master  # Choose action with specific branch
+        with:
+          who-to-greet: JJY # Input required by action
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}" # step // time is output by action
+          
